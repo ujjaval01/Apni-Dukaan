@@ -3,15 +3,12 @@ package com.uv.apnidukaan
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationView
 import com.uv.apnidukaan.fragments.FavoriteFragment
 import com.uv.apnidukaan.fragments.HomeFragment
-import com.uv.apnidukaan.fragments.ManageAccountFragment
-import com.uv.apnidukaan.fragments.NotificationFragment
+import com.uv.apnidukaan.fragments.StockFragment
+import com.uv.apnidukaan.fragments.TransactionsFragment
 import com.uv.apnidukaan.fragments.SettingFragment
 
 class MainActivity : AppCompatActivity() {
@@ -30,16 +27,16 @@ class MainActivity : AppCompatActivity() {
                     replaceFragment(HomeFragment())
                     true
                 }
-                R.id.bottom_manage_account -> {
-                    replaceFragment(ManageAccountFragment())
+                R.id.stock -> {
+                    replaceFragment(StockFragment())
                     true
                 }
                 R.id.bottom_favorite -> {
                     replaceFragment(FavoriteFragment())
                     true
                 }
-                R.id.bottom_notification -> {
-                    replaceFragment(NotificationFragment())
+                R.id.bottom_transaction -> {
+                    replaceFragment(TransactionsFragment())
                     true
                 }
                 R.id.bottom_setting -> {

@@ -10,6 +10,6 @@
     <style name="Theme.ApniDukaan" parent="Base.Theme.ApniDukaan" />
 
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="indicatorColor">@color/yellow</item>
+        <item name="android:color">@color/red</item>
     </style>
 </resources>
