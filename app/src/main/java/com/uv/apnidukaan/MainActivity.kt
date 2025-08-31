@@ -1,15 +1,12 @@
 package com.uv.apnidukaan
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.uv.apnidukaan.fragments.FavoriteFragment
-import com.uv.apnidukaan.fragments.HomeFragment
-import com.uv.apnidukaan.fragments.StockFragment
-import com.uv.apnidukaan.fragments.TransactionsFragment
-import com.uv.apnidukaan.fragments.SettingFragment
+import com.uv.apnidukaan.fragments.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,6 +18,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         bottomNavigationView = findViewById(R.id.bottom_navigation)
+
+        val prefs = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        val langChanged = prefs.getBoolean("Lang_Changed", false)
+
+        // 🔹 BottomNav listener
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when(menuItem.itemId){
                 R.id.bottom_home -> {
@@ -45,14 +47,25 @@ class MainActivity : AppCompatActivity() {
                 }
                 else -> false
             }
-
         }
-        replaceFragment(HomeFragment())
+
+        if (savedInstanceState == null) {
+            if (langChanged) {
+                // ✅ Agar language change hui thi → ek baar Settings open karo
+                bottomNavigationView.selectedItemId = R.id.bottom_setting
+                replaceFragment(SettingFragment())
+                prefs.edit().putBoolean("Lang_Changed", false).apply()
+            } else {
+                // ✅ Normal case → hamesha Home
+                bottomNavigationView.selectedItemId = R.id.bottom_home
+                replaceFragment(HomeFragment())
+            }
+        }
     }
+
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.frame_container, fragment)
             .commit()
     }
-
 }

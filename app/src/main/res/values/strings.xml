@@ -8,7 +8,6 @@
     <string name="notification">Notification</string>
     <string name="setting">Setting</string>
     <string name="home">Home</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_stock">Add Stock</string>
     <string name="transactions">Transactions</string>
@@ -21,4 +20,26 @@
     <string name="security">Security</string>
     <string name="help_support"><![CDATA[Help & Support]]></string>
     <string name="version_1_0_0">Version: 1.0.0</string>
+    <string name="change_language">Change language</string>
+    <string name="welcome_shiv_shakti">Welcome, Shiv Shakti 👋</string>
+    <string name="today_29_aug_2025">Today: 29 Aug 2025</string>
+    <string name="time_11_55_pm">Time: 11:55 PM</string>
+    <string name="app_logo">App Logo</string>
+    <string name="total_stock">📦 Total Stock</string>
+    <string name="_120">120</string>
+    <string name="sold_today">🛒 Sold Today</string>
+    <string name="_25">25</string>
+    <string name="profit">💰 Profit</string>
+    <string name="_1500">₹1500</string>
+    <string name="low_stock">⚠️ Low Stock</string>
+    <string name="_3_items">3 Items</string>
+    <string name="demo_1">Demo 1</string>
+    <string name="_100">100</string>
+    <string name="demo_2">Demo 2</string>
+    <string name="saini">Saini</string>
+    <string name="sell">📉 Sell</string>
+    <string name="report">📊 Report</string>
+    <string name="search">🔍 Search</string>
+    <string name="recent_transactions">Recent Transactions</string>
+    <string name="profit_vs_loss_graph_coming_soon">📊 Profit vs Loss Graph (Coming Soon)</string>
 </resources>

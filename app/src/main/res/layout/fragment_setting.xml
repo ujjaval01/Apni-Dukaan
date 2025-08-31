@@ -80,6 +80,17 @@
 
                 <!-- Backup -->
                 <LinearLayout
+                    android:id="@+id/option_lang"
+                    style="@style/SettingsItem" >
+                    <ImageView
+                        android:src="@drawable/baseline_language_24"
+                        style="@style/SettingsIcon"/>
+                    <TextView
+                        android:text="@string/change_language"
+                        style="@style/SettingsText"/>
+                </LinearLayout>
+                <!-- Backup -->
+                <LinearLayout
                     android:id="@+id/option_backup"
                     style="@style/SettingsItem" >
                     <ImageView
