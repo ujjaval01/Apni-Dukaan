@@ -1,16 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white2"
+    android:padding="16dp"
     tools:context=".fragments.SettingFragment">
+    >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/setting"
-        android:textSize="50sp"
-        android:gravity="center"
-        android:background="@color/light_black"/>
+        <!-- Profile Section -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
 
-</FrameLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@drawable/profile"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                     />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_marginStart="12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="@string/akshay_saini"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:text="@string/owner_email"
+                        android:textSize="14sp"
+                        android:textColor="@color/light_black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Settings Options -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Account -->
+                <LinearLayout
+                    android:id="@+id/option_account"
+                    style="@style/SettingsItem" >
+                    <ImageView
+
+                        android:src="@drawable/baseline_person_24"
+                        style="@style/SettingsIcon"/>
+                    <TextView android:text="@string/account"
+                        style="@style/SettingsText"/>
+                </LinearLayout>
+
+                <!-- Backup -->
+                <LinearLayout
+                    android:id="@+id/option_backup"
+                    style="@style/SettingsItem" >
+                    <ImageView
+                        android:src="@drawable/baseline_backup_24"
+                        style="@style/SettingsIcon"/>
+                    <TextView
+                        android:text="@string/backup_amp_restore"
+                        style="@style/SettingsText"/>
+                </LinearLayout>
+
+                <!-- Notifications -->
+                <LinearLayout
+                    android:id="@+id/option_notifications"
+                    style="@style/SettingsItem"
+                    tools:ignore="UseCompoundDrawables">
+                    <ImageView
+                        android:contentDescription="@string/todo"
+                        android:src="@drawable/baseline_notifications_24"
+                        style="@style/SettingsIcon"/>
+                    <TextView
+                        android:text="@string/notifications"
+                        style="@style/SettingsText"/>
+                </LinearLayout>
+
+                <!-- Security -->
+                <LinearLayout
+                    android:id="@+id/option_security"
+                    style="@style/SettingsItem"
+                    tools:ignore="UseCompoundDrawables">
+                    <ImageView
+                        android:contentDescription="@string/todo"
+                        android:src="@drawable/baseline_security_24"
+                        style="@style/SettingsIcon"/>
+                    <TextView
+                        android:text="@string/security"
+                        style="@style/SettingsText"/>
+                </LinearLayout>
+
+                <!-- Help -->
+                <LinearLayout
+                    android:id="@+id/option_help"
+                    style="@style/SettingsItem"
+                    tools:ignore="UseCompoundDrawables">
+                    <ImageView
+                        android:contentDescription="@string/todo"
+                        android:src="@drawable/baseline_help_24"
+                        style="@style/SettingsIcon"/>
+                    <TextView
+                        android:text="@string/help_support"
+                        style="@style/SettingsText"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+
+

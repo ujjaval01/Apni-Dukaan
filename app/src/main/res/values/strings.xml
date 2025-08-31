@@ -12,4 +12,13 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_stock">Add Stock</string>
     <string name="transactions">Transactions</string>
+    <string name="akshay_saini">Akshay Saini</string>
+    <string name="owner_email">sainisgr01@gmail.com</string>
+    <string name="account">Account</string>
+    <string name="backup_amp_restore"><![CDATA[Backup & Restore]]></string>
+    <string name="notifications">Notifications</string>
+    <string name="todo">TODO</string>
+    <string name="security">Security</string>
+    <string name="help_support"><![CDATA[Help & Support]]></string>
+    <string name="version_1_0_0">Version: 1.0.0</string>
 </resources>
