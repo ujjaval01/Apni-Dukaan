@@ -1,5 +1,6 @@
 package com.uv.apnidukaan.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,17 +8,26 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import com.uv.apnidukaan.R
 import com.uv.apnidukaan.adapter.TransactionAdapter
 import com.uv.apnidukaan.model.Transaction
 
 class HomeFragment : Fragment() {
 
+    private lateinit var chart: LineChart
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+
+        chart = view.findViewById(R.id.profitLossChart)
+        setupProfitLossChart()
 
         val rvTransactions: RecyclerView = view.findViewById(R.id.rvTransactions)
         rvTransactions.layoutManager = LinearLayoutManager(requireContext())
@@ -32,5 +42,42 @@ class HomeFragment : Fragment() {
         rvTransactions.adapter = TransactionAdapter(dummyTransactions)
 
         return view
+    }
+
+    private fun setupProfitLossChart() {
+        // 🔹 Sample transactions: Pair(Day, Profit/Loss)
+        val transactions = listOf(
+            Pair(1f, 1500f),
+            Pair(2f, 800f),
+            Pair(3f, -200f),
+            Pair(4f, 1200f),
+            Pair(5f, -500f),
+            Pair(6f, 2000f)
+        )
+
+        val entries = ArrayList<Entry>()
+        for ((day, profit) in transactions) {
+            entries.add(Entry(day, profit))
+        }
+
+        val dataSet = LineDataSet(entries, "Profit vs Loss")
+        dataSet.lineWidth = 2f
+        dataSet.setDrawFilled(true)
+        dataSet.setDrawValues(true)
+
+        // Color based on positive/negative profit
+        val colors = ArrayList<Int>()
+        for (entry in entries) {
+            if (entry.y >= 0) colors.add(Color.GREEN) else colors.add(Color.RED)
+        }
+        dataSet.colors = colors
+        dataSet.valueTextColor = Color.BLACK
+        dataSet.fillColor = Color.LTGRAY
+
+        val lineData = LineData(dataSet)
+        chart.data = lineData
+        chart.description.isEnabled = false
+        chart.animateY(1000)
+        chart.invalidate()
     }
 }
