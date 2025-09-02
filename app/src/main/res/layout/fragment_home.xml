@@ -47,7 +47,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tvDate"
+                        android:id="@+id/tvDateTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/today_29_aug_2025"
@@ -55,13 +55,6 @@
                         android:textSize="14sp"
                         android:textColor="#757575"/>
 
-                    <TextView
-                        android:id="@+id/tvTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/time_11_55_pm"
-                        android:textSize="14sp"
-                        android:textColor="#757575"/>
                 </LinearLayout>
             </LinearLayout>
 
