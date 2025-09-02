@@ -100,8 +100,11 @@ class HomeFragment : Fragment() {
         super.onResume()
         runnable = object : Runnable {
             override fun run() {
-                val currentDateTime = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
-                    .format(Date())
+                val sdf = SimpleDateFormat(
+                    "EEEE, dd/MM/yyyy | hh:mm:ss a",
+                    Locale("hi", "IN")
+                )
+                val currentDateTime = sdf.format(Date())
                 tvDateTime.text = currentDateTime
                 handler.postDelayed(this, 1000)
             }
