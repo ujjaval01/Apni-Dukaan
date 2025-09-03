@@ -1,5 +1,6 @@
 package com.uv.apnidukaan.fragments
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
@@ -100,9 +101,11 @@ class HomeFragment : Fragment() {
         super.onResume()
         runnable = object : Runnable {
             override fun run() {
+                val prefs = requireActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE)
+                val lang = prefs.getString("My_Lang", "en") ?: "en"
                 val sdf = SimpleDateFormat(
                     "EEEE, dd/MM/yyyy | hh:mm:ss a",
-                    Locale("hi", "IN")
+                    Locale(lang)
                 )
                 val currentDateTime = sdf.format(Date())
                 tvDateTime.text = currentDateTime

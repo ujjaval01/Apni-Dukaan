@@ -20,6 +20,7 @@ class SettingFragment : Fragment() {
     private lateinit var option_security: LinearLayout
     private lateinit var option_backup: LinearLayout
     private lateinit var option_lang: LinearLayout
+    private lateinit var option_theme: LinearLayout
     private lateinit var option_notifications: LinearLayout
     private lateinit var option_account: LinearLayout
 
@@ -27,8 +28,6 @@ class SettingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // 🔹 Load saved language
-        loadLocale()
 
         val view = inflater.inflate(R.layout.fragment_setting, container, false)
 
@@ -36,11 +35,17 @@ class SettingFragment : Fragment() {
         option_security = view.findViewById(R.id.option_security)
         option_backup = view.findViewById(R.id.option_backup)
         option_lang = view.findViewById(R.id.option_lang)
+        option_theme = view.findViewById(R.id.option_theme)
 
         // ✅ Kotlin style click listener
         option_lang.setOnClickListener {
             showLanguageDialog()
         }
+        // ✅ Kotlin style click listener
+        option_theme.setOnClickListener {
+            showThemeDialog()
+        }
+
 
         option_help.setOnClickListener {
             val helpSupportFragment = HelpSupportFragment()
@@ -53,7 +58,7 @@ class SettingFragment : Fragment() {
         return view
     }
 
-    // 🔹 Show Dialog
+    // 🔹 Show Lang Dialog
     private fun showLanguageDialog() {
         val languages = arrayOf("English", "हिन्दी")
 
@@ -62,60 +67,39 @@ class SettingFragment : Fragment() {
         val savedLang = prefs.getString("My_Lang", "en")
         var checkedItem = if (savedLang == "hi") 1 else 0
 
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Choose Language")
+        AlertDialog.Builder(requireContext())
+            .setTitle("Choose Language")
             .setSingleChoiceItems(languages, checkedItem) { dialog, which ->
-                if (which == 0) {
-                    setLocale("en")
-                } else if (which == 1) {
-                    setLocale("hi")
-                }
+                val langCode = if (which == 0) "en" else "hi"
+                com.uv.apnidukaan.utils.LocaleHelper.setLocale(requireContext(), langCode)
 
-                // ❌ Ye flag ab zaroori nahi
-                // prefs.edit().putBoolean("Lang_Changed", true).apply()
-
-                requireActivity().recreate()
+                requireActivity().recreate() // refresh UI
                 dialog.dismiss()
             }
-        builder.create().show()
+            .create()
+            .show()
     }
 
-
-
-    // 🔹 Set locale
-    private fun setLocale(lang: String) {
-        val locale = Locale(lang)
-        Locale.setDefault(locale)
-
-        val config = Configuration()
-        config.setLocale(locale)
-
-        requireContext().resources.updateConfiguration(
-            config, requireContext().resources.displayMetrics
-        )
-
-        // Save in SharedPreferences
-        requireActivity()
-            .getSharedPreferences("Settings", Context.MODE_PRIVATE)
-            .edit {
-                putString("My_Lang", lang)
-            }
-    }
-
-    // 🔹 Load saved language
-    private fun loadLocale() {
+    // show theme dialog
+    private fun showThemeDialog() {
+        val themes = arrayOf("Light", "Dark")
         val prefs = requireActivity()
             .getSharedPreferences("Settings", Context.MODE_PRIVATE)
-        val language = prefs.getString("My_Lang", "en") ?: "en"
-        setLocale(language)
-    }
-    // language change ke sath selected nav item bhi save kar
-    private fun saveLastSelectedNav(navId: Int) {
-        requireActivity()
-            .getSharedPreferences("Settings", Context.MODE_PRIVATE)
-            .edit {
-                putInt("Last_Nav", navId)
+        val savedTheme = prefs.getString("My_Theme", "light")
+
+        val checkedItem = if (savedTheme == "dark") 1 else 0
+        AlertDialog.Builder(requireContext())
+            .setTitle("Choose Theme")
+            .setSingleChoiceItems(themes, checkedItem) { dialog, which ->
+                val theme = if (which == 0) "light" else "dark"
+                prefs.edit {
+                    putString("My_Theme", theme)
+                }
+                requireActivity().recreate() // refresh UI
+                dialog.dismiss()
             }
+            .create()
+            .show()
     }
 
 }

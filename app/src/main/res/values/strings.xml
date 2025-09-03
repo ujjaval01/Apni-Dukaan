@@ -42,4 +42,5 @@
     <string name="search">🔍 Search</string>
     <string name="recent_transactions">Recent Transactions</string>
     <string name="profit_vs_loss_graph_coming_soon">📊 Profit vs Loss Graph (Coming Soon)</string>
+    <string name="change_theme">Change Theme</string>
 </resources>

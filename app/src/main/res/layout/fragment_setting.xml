@@ -78,7 +78,7 @@
                         style="@style/SettingsText"/>
                 </LinearLayout>
 
-                <!-- Backup -->
+                <!-- Language -->
                 <LinearLayout
                     android:id="@+id/option_lang"
                     style="@style/SettingsItem" >
@@ -87,6 +87,18 @@
                         style="@style/SettingsIcon"/>
                     <TextView
                         android:text="@string/change_language"
+                        style="@style/SettingsText"/>
+                </LinearLayout>
+
+                <!-- theme -->
+                <LinearLayout
+                    android:id="@+id/option_theme"
+                    style="@style/SettingsItem" >
+                    <ImageView
+                        android:src="@drawable/baseline_dark_mode_24"
+                        style="@style/SettingsIcon"/>
+                    <TextView
+                        android:text="@string/change_theme"
                         style="@style/SettingsText"/>
                 </LinearLayout>
                 <!-- Backup -->

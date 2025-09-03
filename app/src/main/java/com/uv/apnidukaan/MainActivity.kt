@@ -10,56 +10,41 @@ import com.uv.apnidukaan.fragments.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var bottomNavigationView: BottomNavigationView
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase?.let { com.uv.apnidukaan.utils.LocaleHelper.loadLocale(it) })
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val prefs = getSharedPreferences("Settings", MODE_PRIVATE)
+        val savedTheme = prefs.getString("My_Theme", "light")
+
+        if (savedTheme == "dark") {
+            setTheme(R.style.Theme_ApniDukaan_Dark)
+        } else {
+            setTheme(R.style.Theme_ApniDukaan_Light)
+        }
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation)
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
-        val prefs = getSharedPreferences("Settings", Context.MODE_PRIVATE)
-        val langChanged = prefs.getBoolean("Lang_Changed", false)
-
-        // 🔹 BottomNav listener
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when(menuItem.itemId){
-                R.id.bottom_home -> {
-                    replaceFragment(HomeFragment())
-                    true
-                }
-                R.id.stock -> {
-                    replaceFragment(StockFragment())
-                    true
-                }
-                R.id.bottom_favorite -> {
-                    replaceFragment(FavoriteFragment())
-                    true
-                }
-                R.id.bottom_transaction -> {
-                    replaceFragment(TransactionsFragment())
-                    true
-                }
-                R.id.bottom_setting -> {
-                    replaceFragment(SettingFragment())
-                    true
-                }
+                R.id.bottom_home -> { replaceFragment(HomeFragment()); true }
+                R.id.stock -> { replaceFragment(StockFragment()); true }
+                R.id.bottom_favorite -> { replaceFragment(FavoriteFragment()); true }
+                R.id.bottom_transaction -> { replaceFragment(TransactionsFragment()); true }
+                R.id.bottom_setting -> { replaceFragment(SettingFragment()); true }
                 else -> false
             }
         }
 
         if (savedInstanceState == null) {
-            if (langChanged) {
-                // ✅ Agar language change hui thi → ek baar Settings open karo
-                bottomNavigationView.selectedItemId = R.id.bottom_setting
-                replaceFragment(SettingFragment())
-                prefs.edit().putBoolean("Lang_Changed", false).apply()
-            } else {
-                // ✅ Normal case → hamesha Home
-                bottomNavigationView.selectedItemId = R.id.bottom_home
-                replaceFragment(HomeFragment())
-            }
+            bottomNavigationView.selectedItemId = R.id.bottom_home
+            replaceFragment(HomeFragment())
         }
     }
 
